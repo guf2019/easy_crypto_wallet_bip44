@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  description: This is the swagger file for easy cryptowallet BIP44 service.
+  version: "1.0.0"
+  title: BIP44 Api
+paths:
+  /ping:
+    get:
+      summary: Ping
+      tags:
+        - Test
+      operationId: "operations.ping.pong"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+          description: Successful test
+        '520':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalError'
+          description: Internal server error
+  /generate_mnemonic_phrase:
+    get:
+      summary: Generating mnemonic phrase
+      tags:
+        - Mnemonic phrase
+      operationId: "operations.mnemonic_phrase.generate_mnemonic_phrase"
+      parameters:
+        - $ref: '#/components/parameters/passphrase'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateMnemonicPhraseResponse'
+          description: Mnemonic phrase received.
+        '520':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalError'
+          description: Internal server error
+components:
+  schemas:
+    PingResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: pong
+    GenerateMnemonicPhraseResponse:
+      type: object
+      properties:
+        mnemonic_phrase:
+          type: array
+          items:
+            type: string
+    InternalError:
+      type: object
+      properties:
+        error_type:
+          type: string
+          example: error
+        error_message:
+          type: string
+          example: 'No access to the service.'
+  parameters:
+    passphrase:
+      name: passphrase
+      in: query
+      required: true
+      description: Password phrase
+      schema:
+        type: string
