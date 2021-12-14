@@ -29,8 +29,6 @@ paths:
       tags:
         - Mnemonic phrase
       operationId: "operations.mnemonic_phrase.generate_mnemonic_phrase"
-      parameters:
-        - $ref: '#/components/parameters/passphrase'
       responses:
         '200':
           content:

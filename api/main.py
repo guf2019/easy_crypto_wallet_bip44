@@ -2,6 +2,7 @@ from flask import Flask
 import connexion
 from connexion import request
 from operations.ping import *
+from config.constants import ServiceParameters
 
 app = connexion.App(__name__, specification_dir='../documentation')
 
@@ -13,8 +14,8 @@ def ping():
 
 @app.route('/generate_mnemonic_phrase')
 def generate_mnemonic_phrase():
-    passphrase = request.args.get('passphrase')
-    return generate_mnemonic_phrase(passphrase)
+    return generate_mnemonic_phrase()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    print(f"Documentation to api be see on http://{ServiceParameters.HOST}:{ServiceParameters.PORT}/ui")
+    app.run(host=ServiceParameters.HOST, port=ServiceParameters.PORT, debug=True)
