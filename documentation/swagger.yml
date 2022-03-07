@@ -42,6 +42,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalError'
           description: Internal server error
+  /get_blockNumber:
+    get:
+      summary: Get block number in Ethereum mainnet
+      tags:
+        - Blockchain info
+      operationId: "operations.blockchain_info.get_blockNumber"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBlockNumberResponse'
+          description: Block number of Ethereum mainnet received.
+        '520':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalError'
+          description: Internal server error
+  /get_eth_balance/{account_address}:
+    get:
+      summary: Takes balance from Ethereum address
+      tags:
+        - AccountInfo
+      operationId: "operations.account_info.get_eth_balance"
+      parameters:
+        - name: account_address
+          in: path
+          description: Address of Ethereum account
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEthBalanceResponse'
+          description: Balance of Ethereum account received.
+        '520':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalError'
+          description: Internal server error
 components:
   schemas:
     PingResponse:
@@ -57,6 +102,16 @@ components:
           type: array
           items:
             type: string
+    GetEthBalanceResponse:
+      type: object
+      properties:
+        balance:
+          type: number
+    GetBlockNumberResponse:
+      type: object
+      properties:
+        balance:
+          type: integer
     InternalError:
       type: object
       properties:
