@@ -87,6 +87,56 @@ paths:
               schema:
                 $ref: '#/components/schemas/InternalError'
           description: Internal server error
+  /transferETH/{from_address}/{to_address}/{value}/{gasPriceInGwei}/{private_key}:
+    get:
+      summary: Sends some ETH from first account to second account
+      tags:
+        - Transactions
+      operationId: "operations.transactions.transferETH"
+      parameters:
+        - name: from_address
+          in: path
+          description: Address from Ethereum account ETH sends
+          required: true
+          schema:
+            type: string
+        - name: to_address
+          in: path
+          description: Address to Ethereum account ETH sends
+          required: true
+          schema:
+            type: string
+        - name: value
+          in: path
+          description: ETH value
+          required: true
+          schema:
+            type: number
+        - name: gasPriceInGwei
+          in: path
+          description: Price for gas
+          required: true
+          schema:
+            type: integer
+        - name: private_key
+          in: path
+          description: Private key from first account
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferETHResponse'
+          description: ETH sends.
+        '520':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalError'
+          description: Internal server error
 components:
   schemas:
     PingResponse:
@@ -112,6 +162,11 @@ components:
       properties:
         balance:
           type: integer
+    TransferETHResponse:
+      type: object
+      properties:
+        balance:
+          type: string
     InternalError:
       type: object
       properties:

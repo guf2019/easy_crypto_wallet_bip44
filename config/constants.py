@@ -4,6 +4,6 @@ class ServiceParameters:
 
 class NodeRPC:
     ETHEREUM_MAINNET = "https://mainnet.infura.io/v3/b553e149719b47dfa8c02ba444969a25"
-    ETHEREUM_RINKEBY = ""
-    ETHEREUM_KOVAN = ""
-    ETHEREUM_ROPSTEN = ""
+    ETHEREUM_RINKEBY = "https://rinkeby.infura.io/v3/b553e149719b47dfa8c02ba444969a25"
+    ETHEREUM_KOVAN = "https://kovan.infura.io/v3/b553e149719b47dfa8c02ba444969a25"
+    ETHEREUM_ROPSTEN = "https://ropsten.infura.io/v3/b553e149719b47dfa8c02ba444969a25"

@@ -8,4 +8,4 @@ class Web3Driver:
         if not self.web3.isConnected():
             raise Web3ConnectException(net)
 
-web3Driver = Web3Driver(NodeRPC.ETHEREUM_MAINNET)
+web3Driver = Web3Driver(NodeRPC.ETHEREUM_KOVAN)

@@ -5,6 +5,7 @@ from operations.ping import *
 from operations.blockchain_info import get_blockNumber
 from operations.account_info import get_eth_balance
 from operations.mnemonic_phrase import generate_mnemonic_phrase
+from operations.transactions import transferETH
 from config.constants import ServiceParameters
 
 app = connexion.App(__name__, specification_dir='../documentation')
@@ -26,6 +27,10 @@ def get_eth_balance_app(account_address):
 @app.route('/get_blocknumber')
 def get_blockNumber_app():
     return get_blockNumber()
+
+@app.route('/transferETH')
+def transferETH_app(from_address, to_address, value, gasPriceInGwei, private_key):
+    return transferETH(from_address, to_address, value, gasPriceInGwei, private_key)
 
 if __name__ == '__main__':
     print(f"Documentation to api be see on http://{ServiceParameters.HOST}:{ServiceParameters.PORT}/ui")
