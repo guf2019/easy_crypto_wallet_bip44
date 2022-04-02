@@ -6,7 +6,7 @@ from operations.blockchain_info import get_blockNumber
 from operations.account_info import get_eth_balance
 from operations.mnemonic_phrase import generate_mnemonic_phrase
 from operations.transactions import transferETH
-from config.constants import ServiceParameters
+from config import ServiceParameters
 
 app = connexion.App(__name__, specification_dir='../documentation')
 
